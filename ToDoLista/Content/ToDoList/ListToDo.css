@@ -1,0 +1,30 @@
+﻿.gv_toDoList {
+    margin: auto auto;
+    border: 2px solid black;
+    border-radius 5px;
+    text-align-last: center;
+    text-align: center;
+}   
+.gv_toDoList_rows {
+    background-color: rgb(54, 54, 54);
+    border: 1px solid rgb(10, 72, 255);
+    border-radius 5px;
+    color: #e6e6e6;
+    
+}
+.gv_toDoList_header {
+    background-color: rgb(15, 15, 15);
+    border: 1px solid rgb(10, 72, 255);
+    border-radius 5px;  
+    color: #e6e6e6;
+}
+.hiddencol {
+    display: none;
+}
+.gv_toDoList_row_editrow {
+    background-color: rgb(54, 54, 54);
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px 4px #000;
+    font-weight: bold;
+    height: 30px;
+}
