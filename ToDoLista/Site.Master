@@ -4,7 +4,7 @@
 
 <html lang="pl">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Moja aplikacja platformy ASP.NET</title>
@@ -13,20 +13,20 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <script src="Scripts/jquery-3.4.1.js"></script>
+    <script src="../Scripts/jquery-3.4.1.js"></script>
     <script src="../Scripts/Toast.js"></script>
-    <link href="Content/iziToast.css" rel="stylesheet" />
-    <link href="Content/iziToast.min.css" rel="stylesheet" />
-    <script src="Scripts/iziToast.js"></script>
+    <link href="../Content/iziToast.css" rel="stylesheet" />
+    <link href="../Content/iziToast.min.css" rel="stylesheet" />
+    <script src="../Scripts/iziToast.js"></script>
 
-    <script src="Scripts/iziToast.min.js"></script>
-    <script src="Scripts/jquery.redirect.js"></script>
-
+    <script src="../Scripts/iziToast.min.js"></script>
+    <script src="../Scripts/jquery.redirect.js"></script>
+    <script src="../Scripts/jquery.cookie.js"></script>
 
 </head>
 <body>
@@ -50,7 +50,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -61,14 +61,14 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">ToDo Lista app</a>
                 </div>
-
+            </div>
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p style="color:white; color; text-align:center;" > &copy; <%: DateTime.Now.Year %> - This application was written as an assignment for recruitment purposes.</p>
+            <footer class="navbar navbar-inverse">
+                <p style="color: white; text-align: center;">&copy; <%: DateTime.Now.Year %> - This application was written as an assignment for recruitment purposes.</p>
             </footer>
         </div>
 

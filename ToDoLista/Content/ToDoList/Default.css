@@ -18,27 +18,26 @@
     background-color: white;
     border-left: 0;
     border-top: 0;
-    border-right 0;
+    border-right: 0;
     border-bottom: 2px solid Black;
     color: black;
-    margin-right:20px;
-    pl
+    margin-right: 20px;
 }
 
     .textClass:hover {
         transition: 1s;
-        border-bottom: 6px solid Black;
+        box-shadow: 1px 1px 2px 1px #000;
         color: black;
     }
 
-textClass:focus {
-    border-left: 0;
-    border-top: 0;
-    border-right 0;
-    border-bottom: 6px solid Black;
-    border-bottom: 6px solid Black;
-    color: black;
-}
+    .textClass:focus {
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+        outline: none;
+        box-shadow: 2px 2px 2px 1px #000;
+        color: black;
+    }   
 
 p {
     text-align: center;

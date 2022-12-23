@@ -1,30 +1,122 @@
-﻿.gv_toDoList {
+﻿
+
+.gv_toDoList {
     margin: auto auto;
     border: 2px solid black;
-    border-radius 5px;
+    border-radius: 5px;
     text-align-last: center;
     text-align: center;
-}   
+    font: 21px arial;
+  
+}
 .gv_toDoList_rows {
     background-color: rgb(54, 54, 54);
-    border: 1px solid rgb(10, 72, 255);
-    border-radius 5px;
+    border: 0 solid rgb(54, 54, 54);
+    border-radius: 5px;
     color: #e6e6e6;
-    
+    border-bottom: 2px solid black;
 }
+.gv_toDoList_row_editrow {
+    background-color: rgb(54, 54, 54);
+    box-shadow: 12px 12px 2px 1px #000;
+    border: 0 solid rgb(54, 54, 54);
+    
+    border-bottom: 5px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    height: 100px;
+    color: black;
+}
+
 .gv_toDoList_header {
     background-color: rgb(15, 15, 15);
-    border: 1px solid rgb(10, 72, 255);
-    border-radius 5px;  
+    border: 1px solid rgb(15, 15, 15);
+    border-bottom: 5px solid white;
+    border-radius: 5px;
+    font-weight: bold;
     color: #e6e6e6;
 }
 .hiddencol {
     display: none;
 }
-.gv_toDoList_row_editrow {
-    background-color: rgb(54, 54, 54);
+ 
+.gv_toDoList_row_isDo {
+    background-color: rgb(10, 127, 22);
+    border: 0 solid rgb(10, 127, 22);
+    border-bottom: 5px solid white;
     border-radius: 5px;
-    box-shadow: 1px 1px 6px 4px #000;
-    font-weight: bold;
+    color: white;
+    
+}
+.WordWrap {
+    width: 100%;
+    word-break: break-all;
+}
+
+.WordBreak {
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+p{
+    text-align:center;
+
+}
+
+.contenerAddTask {
+    text-align: center;
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+    flex-direction: column;
+  
+}
+.contenerNewTask {
+    margin-left:25px;
+    height:30px;    
+   
+}
+.contenerNewEndDate {
+    text-align: center;
+    margin-bottom: 20px;
     height: 30px;
 }
+
+.AddButton {
+    margin: auto auto;
+    color: black;
+    font: 22px arial;
+    font-weight: bold;
+    width: 200px;
+    height: 30px;
+}
+
+    .AddButton:hover {
+        text-decoration: none;
+        transition: 2s;
+        font: 28px arial;
+        font-weight: bold;
+    }
+.textClass {
+    background-color: white;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid Black;
+    color: black;
+    margin-right: 20px;
+}
+
+    .textClass:hover {
+        transition: 1s;
+        box-shadow: 1px 1px 2px 1px #000;
+        color: black;
+    }
+    .textClass:focus {
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+        outline: none;
+        box-shadow: 2px 2px 2px 1px #000;
+        color: black;
+    }

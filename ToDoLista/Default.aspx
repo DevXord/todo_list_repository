@@ -22,11 +22,14 @@
             <asp:ListBox ID="lb_selectUser"
                 Width="550px" 
                 Height="250"
-                
+                DataTextField="Name"
                 AutoPostBack="false" 
                 OnDataBinding="lb_selectUser_DataBinding"
                 ViewStateMode="Inherit"
-                runat="server"></asp:ListBox> 
+                runat="server"> 
+                
+
+            </asp:ListBox> 
         </div>
         <div id="contenerTBBT" style="display: block; text-align: center; margin: 25px auto;">
             
@@ -35,6 +38,10 @@
         </div>
 
     </div>
+    <div style="display: none;">
+       <asp:Button runat="server" ID="SelectUser" OnClick="SelectUser_Click" />
+    </div>
 
      <script src="Scripts/ToDoList/Default.js"></script>
 </asp:Content>
+ 
