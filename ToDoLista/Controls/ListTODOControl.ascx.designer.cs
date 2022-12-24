@@ -24,22 +24,13 @@ namespace ToDoLista.Controls
         protected global::System.Web.UI.WebControls.HiddenField hf_listToDo;
 
         /// <summary>
-        /// Kontrolka gv_toDoList.
+        /// Kontrolka btn_showNewTaskControls.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_toDoList;
-
-        /// <summary>
-        /// Kontrolka DeleteRow.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteRow;
+        protected global::System.Web.UI.WebControls.LinkButton btn_showNewTaskControls;
 
         /// <summary>
         /// Kontrolka tb_newTask.
@@ -76,5 +67,50 @@ namespace ToDoLista.Controls
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NewTask;
+
+        /// <summary>
+        /// Kontrolka SaveCheck.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveCheck;
+
+        /// <summary>
+        /// Kontrolka cb_showEndTask.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cb_showEndTask;
+
+        /// <summary>
+        /// Kontrolka lb_showEndTask.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_showEndTask;
+
+        /// <summary>
+        /// Kontrolka gv_toDoList.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_toDoList;
+
+        /// <summary>
+        /// Kontrolka DeleteRow.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteRow;
     }
 }

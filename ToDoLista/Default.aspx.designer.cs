@@ -15,13 +15,13 @@ namespace ToDoLista
     {
 
         /// <summary>
-        /// Kontrolka lb_selectUser.
+        /// Kontrolka cmb_selectUser.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lb_selectUser;
+        protected global::AjaxControlToolkit.ComboBox cmb_selectUser;
 
         /// <summary>
         /// Kontrolka tb_newUser.
@@ -39,7 +39,7 @@ namespace ToDoLista
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt_nextPage;
+        protected global::System.Web.UI.WebControls.LinkButton bt_nextPage;
 
         /// <summary>
         /// Kontrolka SelectUser.

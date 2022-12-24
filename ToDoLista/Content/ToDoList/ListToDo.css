@@ -1,7 +1,7 @@
-﻿
-
+﻿ 
 .gv_toDoList {
     margin: auto auto;
+     
     border: 2px solid black;
     border-radius: 5px;
     text-align-last: center;
@@ -13,6 +13,7 @@
     background-color: rgb(54, 54, 54);
     border: 0 solid rgb(54, 54, 54);
     border-radius: 5px;
+ 
     color: #e6e6e6;
     border-bottom: 2px solid black;
 }
@@ -24,7 +25,7 @@
     border-bottom: 5px solid black;
     border-radius: 5px;
     font-weight: bold;
-    height: 100px;
+  
     color: black;
 }
 
@@ -34,6 +35,7 @@
     border-bottom: 5px solid white;
     border-radius: 5px;
     font-weight: bold;
+    height: 10px;
     color: #e6e6e6;
 }
 .hiddencol {
@@ -50,6 +52,7 @@
 }
 .WordWrap {
     width: 100%;
+    
     word-break: break-all;
 }
 
@@ -85,10 +88,11 @@ p{
 .AddButton {
     margin: auto auto;
     color: black;
+    text-align:center;
     font: 22px arial;
     font-weight: bold;
-    width: 200px;
-    height: 30px;
+    width: 250px;
+    height: 100px;
 }
 
     .AddButton:hover {
@@ -120,3 +124,53 @@ p{
         box-shadow: 2px 2px 2px 1px #000;
         color: black;
     }
+.gv_toDoList_pager {
+    background-color: rgb(54, 54, 54);
+    border: 1px solid rgb(15, 15, 15);
+    border-top: 5px solid white;
+    border-radius: 5px;
+    font-weight: bold;
+    height: 75px;
+    color: #e6e6e6;
+ 
+}
+
+
+
+.cb_showEndTask {
+    margin-left: 75px;
+    margin-top: 50px;
+    
+}
+
+
+
+
+#dv_NewTaskContener {
+    display: none;
+}
+
+
+.showButton {
+    margin: auto auto;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font: 22px arial;
+    font-weight: bold;
+    width: 250px;
+    height: 100px;
+}
+
+    .showButton:hover {
+        text-decoration: none;
+        transition: 2s;
+        font: 28px arial;
+        font-weight: bold;
+    }
+
+#dv_showButton {
+    margin: auto auto;
+    text-align:center;
+    height:50px;
+}

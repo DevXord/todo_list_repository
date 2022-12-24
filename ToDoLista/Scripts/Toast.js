@@ -4,12 +4,12 @@ function ToastSuccess(message,time=5000,position = 'topRight'){
 
         id: 'success', 
         title: 'Success',
-        theme: 'light', // dark 
+        theme: 'light',  
         message: message,
-        color: 'green', // blue, red, green, yellow
+        color: 'green', 
         closeOnClick: false,
-        displayMode: 'once',
-        position: position, // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+        displayMode: 'replace',
+        position: position,  
         timeout: time
     });
 };
@@ -20,12 +20,12 @@ function ToastError(message,time=5000,position = 'topRight'){
 
         id: 'error', 
         title: 'Error',
-        theme: 'light', // dark  light
+        theme: 'light', 
         message: message,
-        color: 'red', // blue, red, green, yellow
+        color: 'red',  
         closeOnClick: false,
-        displayMode: 'once',
-        position: position, // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+        displayMode: 'replace',
+        position: position, 
         timeout: time
     });
 
@@ -35,12 +35,12 @@ function ToastInfo(message,time=5000,position = 'topRight'){
 
         id: 'info', 
         title: 'Info',
-        theme: 'light', // dark light
+        theme: 'light', 
         message: message,
-        color: 'blue', // blue, red, green, yellow
+        color: 'blue', 
         closeOnClick: false,
-        displayMode: 'once',
-        position: position, // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+        displayMode: 'replace',
+        position: position,  
         timeout: time
     });
 
@@ -51,14 +51,51 @@ function ToastWarning(message,time=5000,position = 'topRight'){
 
         id: 'warning', 
         title: 'Warning',
-        theme: 'light', // dark light
+        theme: 'light',  
         message: message,
-        color: 'yellow', // blue, red, green, yellow
+        color: 'yellow',  
         closeOnClick: false,
-        displayMode: 'once',
-        position: position, // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+        displayMode: 'replace',
+        position: position,  
         timeout: time
     });
 
 };
+
+
+
+function ToastInfoButtons(message, path) {
+    iziToast.info({
+
+        id: 'info',
+        title: 'Info',
+        theme: 'light',
+        message: message,
+        color: 'blue',
+        close: false,
+        drag: false,
+        overlay: true,
+        displayMode: 'once',
+        position: 'center',
+        maxWidth: 350,
+        timeout: null,
+        buttons: [
+            ['<button><b>Ok</b></button>', function (instance, toast) {
+                window.open(path, '_self');
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                }, toast, 'close', 'white-button');
+            }],
+
+            ['<button><b>Cancel</b></button>', function (instance, toast) {
+           
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                }, toast, 'close', 'white-button');
+            }]
+        ],
+    });
+
+};
+
  

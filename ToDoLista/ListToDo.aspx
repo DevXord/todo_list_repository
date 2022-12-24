@@ -1,4 +1,4 @@
-﻿<%@ Page Title="List ToDo"  Language="C#" EnableEventValidation="true" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListToDo.aspx.cs" Inherits="ToDoLista.ListToDo" %>
+﻿<%@ Page Title="List ToDo"  Language="C#" MaintainScrollPositionOnPostback="true"  EnableEventValidation="true" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListToDo.aspx.cs" Inherits="ToDoLista.ListToDo" %>
 
 <%@ Register Src="~/Controls/ListTODOControl.ascx" TagPrefix="uc1" TagName="ListTODOControl" %>
 
