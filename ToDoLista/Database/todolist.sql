@@ -1,4 +1,4 @@
-CREATE DATABASE `todolist`
+CREATE DATABASE `todolist`;
 
 CREATE TABLE `users` (
   `ID_User` int(11) NOT NULL AUTO_INCREMENT,

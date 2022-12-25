@@ -27,21 +27,21 @@ namespace ToDoLista
 
         protected void SelectUser_Click(object sender, EventArgs e)
         {
-            string userName = cmb_selectUser.SelectedItem != null && cmb_selectUser.SelectedItem.Text != "" ? cmb_selectUser.SelectedItem.Text  : tb_newUser.Text;
+            string userName = cmb_selectUser.SelectedValue != null  && cmb_selectUser.SelectedValue != "" ? cmb_selectUser.SelectedItem.Text  : tb_newUser.Text;
             if (cmb_selectUser.SelectedItem == null || cmb_selectUser.SelectedItem.Text == "") 
             {
                 UserModel.CreateNewUser(userName);
             }
             Session["userName"] = userName;
             Session["userID"] = Convert.ToString(UserModel.GetIdUserWithName(userName));
-            var tasks = TaskModel.ShowUserTasks(Convert.ToInt32(Session["userID"]));
+            var tasks = TaskModel.ShowUserTasks(Convert.ToInt32(Session["userID"]),true);
 
             string message = "";
 
             foreach (var task in tasks)
             {
-                if (task.EndDate.Value >= DateTime.Now.AddDays(1) && task.EndDate.Value < DateTime.Now.AddDays(2)) {
-                    message += "Task <b>" + task.Task + "</b><br> End date " + task.EndDate.Value.ToString("dd/mm/yyyy") + "<br>";
+                if (task.EndDate.Value >= DateTime.Now && task.EndDate.Value < DateTime.Now.AddDays(2)) {
+                    message += "Task <b>" + task.Task + "</b><br> End date " + task.EndDate.Value.ToShortDateString() +" at " + task.EndDate.Value.ToShortTimeString() + "<br>";
 
 
                 }

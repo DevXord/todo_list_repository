@@ -26,6 +26,12 @@ namespace ToDoLista.Controls
             cb_showEndTask.Visible = position;
 
         }
+        protected void CheckRow_Click(object sender, EventArgs e)
+        {
+            if (hf_listToDo.Value != string.Empty)
+                TaskModel.CheckTask(Convert.ToInt32(hf_listToDo.Value));
+            gv_toDoList.DataBind();
+        }
         protected void DeleteRow_Click(object sender, EventArgs e)
         {
             if (hf_listToDo.Value != string.Empty)
@@ -36,11 +42,16 @@ namespace ToDoLista.Controls
         protected void AddNewTask_Click(object sender, EventArgs e)
         {
 
+            if (tb_newTask.Text == "" || hf_endDate.Value == "")
+            {
+                gv_toDoList.DataBind();
+                return;
+            }
             TaskModel task = new TaskModel();
 
             task.Task = tb_newTask.Text;
             task.EnteredDate = DateTime.Now;
-            task.EndDate = Convert.ToDateTime(tb_dateTask.Text);
+            task.EndDate = Convert.ToDateTime(hf_endDate.Value);
             task.User_ID = Convert.ToInt32(Session["userID"]);
 
 
@@ -90,13 +101,25 @@ namespace ToDoLista.Controls
             else
                 showEndTaskControls(false);
 
-            gv_toDoList.DataSource = TaskModel.ShowUserTasks(Convert.ToInt32(Session["userID"]), UserModel.GetSelectedUser(Convert.ToInt32(Session["userID"]))); ;
+      
+            
+            gv_toDoList.DataSource = TaskModel.ShowUserTasks(Convert.ToInt32(Session["userID"]), UserModel.GetSelectedUser(Convert.ToInt32(Session["userID"])));;
             cb_showEndTask.DataBind();
         }
 
         protected void gv_toDoList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "Accept")
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "showCheckAskToast();", true);
+            if (e.CommandName == "Delete")
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "showDeleteAskToast();", true);
+
             hf_listToDo.Value = gv_toDoList.Rows[Convert.ToInt32(e.CommandArgument)].Cells[0].Text;
+
+            gv_toDoList.DataBind();
+ 
+
+
         }
 
 
@@ -105,7 +128,7 @@ namespace ToDoLista.Controls
         {
 
             TaskModel task = TaskModel.GetTaskByID(Convert.ToInt32(e.Keys["ID_ToDo"]));
-
+         
             if (e.NewValues["Task"] == null)
                 task.Task = null;
             else
@@ -113,12 +136,11 @@ namespace ToDoLista.Controls
                 if (e.NewValues["Task"].ToString() != task.Task)
                     task.Task = e.NewValues["Task"].ToString();
             }
-
-            GridViewRow _row = gv_toDoList.Rows[e.RowIndex];
-            TextBox ce = _row.FindControl("tb_endDate") as TextBox;
+            
+ 
             DateTime result;
             bool is_valid = false;
-            if (DateTime.TryParse(ce.Text, out result))
+            if (DateTime.TryParse(hf_endDate.Value, out result))
             {
                 if (result == new DateTime(0001, 1, 1, 12, 0, 0))
                 {
@@ -133,10 +155,12 @@ namespace ToDoLista.Controls
                     is_valid = true;
                 }
                 if (!is_valid)
+                {
                     task.EndDate = result;
-
+                }
 
             }
+
 
 
             TaskModel.UpdateTask(task);
@@ -182,9 +206,10 @@ namespace ToDoLista.Controls
                 TaskModel task = e.Row.DataItem as TaskModel;
                 if (task != null)
                 {
+                    Label l_endDate = e.Row.FindControl("l_endDate") as Label;
                     if (task.IsToDo == 1)
                     {
-                        Label l_endDate = e.Row.FindControl("l_endDate") as Label;
+                      
                         if (l_endDate != null)
                         {
                             var bt_deleteRow = e.Row.Cells[1].Controls[0] as ImageButton;
@@ -194,12 +219,33 @@ namespace ToDoLista.Controls
 
                             bt_deleteRow.CssClass = "hiddencol";
 
-
+                           
                             l_endDate.ForeColor = Color.White;
                             e.Row.CssClass = "gv_toDoList_row_isDo";
                         }
+                       
+                    }
+                    if (task.EndDate < DateTime.Now && task.IsToDo == 0)
+                    {
+                        e.Row.CssClass = "";
+                        if (l_endDate != null)
+                        {
+
+                            var bt_deleteRow = e.Row.Cells[1].Controls[0] as ImageButton;
+                            var bt_editRow = e.Row.Cells[2].Controls[0] as ImageButton;
+
+                            bt_editRow.CssClass = "hiddencol";
+
+                            bt_deleteRow.CssClass = "hiddencol";
+
+
+                            l_endDate.ForeColor = Color.White;
+                            e.Row.CssClass = "gv_toDoList_row_After";
+                        }
 
                     }
+                    if (l_endDate != null)
+                        l_endDate.Text = task.EndDate.Value.ToString("g");
                 }
 
             }
@@ -233,7 +279,15 @@ namespace ToDoLista.Controls
         {
             cb_showEndTask.DataBind();
         }
+ 
 
+        protected void tb_endDate_TextChanged(object sender, EventArgs e)
+        {
+            TextBox date = sender as TextBox;
+            date.Text = date.Text.Replace('T', ' ');
+            hf_endDate.Value = date.Text;
+        }
 
+      
     }
 }

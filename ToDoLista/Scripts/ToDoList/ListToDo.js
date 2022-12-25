@@ -1,9 +1,42 @@
-﻿function showAskToast() {
+﻿function showCheckAskToast() {
     iziToast.show({
         id: 'question',
         title: 'Question',
         theme: 'light',
         message: "Mark this task as done?",
+        color: 'yellow',
+        close: false,
+        overlay: true,
+        displayMode: 'once',
+        position: 'center',
+        timeout: null,
+        buttons: [
+            ['<button><b>Yes</b></button>', function (instance, toast) {
+                var button = document.getElementById('MainContent_ListTODOControl_CheckRow');
+                button.click();
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                }, toast, 'close', 'white-button');
+            }],
+            ['<button ><b>No</b></button>', function (instance, toast) {
+                var button = document.getElementById('MainContent_ListTODOControl_ClearGridViewButton');
+                button.click();
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                }, toast, 'close', 'white-button');
+            }]
+        ],
+    });
+ 
+    return false;
+}
+ 
+function showDeleteAskToast() {
+    iziToast.show({
+        id: 'question',
+        title: 'Question',
+        theme: 'light',
+        message: "Do you want to delete this task?",
         color: 'yellow',
         close: false,
         overlay: true,
@@ -27,7 +60,7 @@
             }]
         ],
     });
- 
+
     return false;
 }
 
@@ -53,7 +86,10 @@ $('#MainContent_ListTODOControl_bt_newTask').click(function () {
 
         return false;
     }
+
    
+
+
 
     var button = document.getElementById('MainContent_ListTODOControl_NewTask');
     button.click();

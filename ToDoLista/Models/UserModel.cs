@@ -185,8 +185,8 @@ namespace ToDoLista.Models
             string query = string.Format(@"SELECT 
                                 ID_User 
                                 ,Name  
-                                ,JoinDate  
-                                ,LastLoginDate 
+                                ,JoinDate
+                                ,LastLoginDate
                                 ,Selected 
                                 FROM users;");
             using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
@@ -203,8 +203,8 @@ namespace ToDoLista.Models
                                 UserModel x = new UserModel();
                                 x.ID_User = reader.GetInt32(0);
                                 x.Name = reader.IsDBNull(1) || reader.GetString(1) == "" ? string.Empty : reader.GetString(1);
-                                x.JoinDate = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2);
-                                x.LastLogin = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                                x.JoinDate = reader.IsDBNull(2) ? (DateTime?)null : Convert.ToDateTime(reader.GetValue(2));
+                                x.LastLogin = reader.IsDBNull(3) ? (DateTime?)null : Convert.ToDateTime(reader.GetValue(3));
                                 x.Selected = reader.GetByte(4) == 1 ? true : false;
                                 users.Add(x);
 

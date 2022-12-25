@@ -24,6 +24,15 @@ namespace ToDoLista.Controls
         protected global::System.Web.UI.WebControls.HiddenField hf_listToDo;
 
         /// <summary>
+        /// Kontrolka hf_endDate.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hf_endDate;
+
+        /// <summary>
         /// Kontrolka btn_showNewTaskControls.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace ToDoLista.Controls
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SaveCheck;
+
+        /// <summary>
+        /// Kontrolka CheckRow.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CheckRow;
 
         /// <summary>
         /// Kontrolka DeleteRow.

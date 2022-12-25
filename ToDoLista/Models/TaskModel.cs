@@ -103,7 +103,7 @@ namespace ToDoLista.Models
 
         }
 
-        public static List<TaskModel> ShowUserTasks(int? userID, bool showEndTask = false)
+        public static List<TaskModel> ShowUserTasks(int? userID, bool showEndTasks = false)
         {
             List<TaskModel> tasks = new List<TaskModel>();
             string query = string.Format(@"SELECT 
@@ -114,7 +114,7 @@ namespace ToDoLista.Models
                                 ,EndDate 
                                 ,IsToDo 
                                 FROM tasks
-                                WHERE User_ID = @UserID {0} order by IsToDo desc ,EndDate asc;", showEndTask ? "AND IsToDo = 0 " : "");
+                                WHERE User_ID = @UserID {0} order by IsToDo desc ,EndDate asc;", showEndTasks ? "AND IsToDo = 0 " : "");
             using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
             {
                 connection.Open();
@@ -163,8 +163,8 @@ namespace ToDoLista.Models
 								ID_Task
                                 ,User_ID 
                                 ,Task 
-                                ,EnteredDate 
-                                ,EndDate 
+                                ,EnteredDate
+                                ,EndDate
                                 ,IsToDo 
                                 FROM tasks
                                 WHERE ID_Task = @taskID;";
@@ -184,8 +184,8 @@ namespace ToDoLista.Models
                                 task.ID_ToDo = reader.GetInt32(0);
                                 task.User_ID = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                                 task.Task = reader.IsDBNull(2) || reader.GetString(2) == "" ? string.Empty : reader.GetString(2);
-                                task.EnteredDate = reader.IsDBNull(3) ? (DateTime?)null : (DateTime)reader.GetValue(3);
-                                task.EndDate = reader.IsDBNull(4) ? (DateTime?)null : (DateTime)reader.GetValue(4);
+                                task.EnteredDate = reader.IsDBNull(3) ? (DateTime?)null : Convert.ToDateTime(reader.GetValue(3));
+                                task.EndDate = reader.IsDBNull(4) ? (DateTime?)null : Convert.ToDateTime(reader.GetValue(4));
                                 task.IsToDo = reader.IsDBNull(5) ? (byte?)null : reader.GetByte(5);
 
 
@@ -207,17 +207,44 @@ namespace ToDoLista.Models
 
         }
 
+         
 
 
-
-
-
-        public static void DeleteTask(int? taskID)
+        public static void CheckTask(int? taskID)
         {
             string query = @"UPDATE `todolist`.`tasks`
                                 SET
                                 `IsToDo` = 1
                                 WHERE `ID_Task` = @ID_Task;";
+
+
+            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@ID_Task", MySqlDbType.Int32).Value = taskID;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+
+                        throw e;
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        public static void DeleteTask(int? taskID)
+        {
+            string query = @"DELETE FROM `todolist`.`tasks`
+                            WHERE ID_Task = @ID_Task;";
 
 
             using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))

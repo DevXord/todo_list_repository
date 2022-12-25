@@ -19,7 +19,7 @@
         <p>Select a user or enter a new name</p>
 
         <div id="contenerTBBT">
-            <ajaxToolkit:ComboBox ID="cmb_selectUser" EnableTheming="false"  EnableViewState="false"  AutoPostBack="False" DataValueField="ID_User" DataTextField="Name" OnDataBinding="cmb_selectUser_DataBinding" runat="server" ToolTip="Select user" AutoCompleteMode="Suggest">
+            <ajaxToolkit:ComboBox ID="cmb_selectUser" AutoPostBack="False" DataValueField="ID_User" DataTextField="Name" OnDataBinding="cmb_selectUser_DataBinding" runat="server" ToolTip="Select user" >
             </ajaxToolkit:ComboBox>
 
             <asp:TextBox ID="tb_newUser" TextMode="SingleLine" CssClass="textClass" AutoPostBack="false" runat="server"></asp:TextBox>

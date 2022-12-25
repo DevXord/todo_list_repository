@@ -1,14 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListTODOControl.ascx.cs" Inherits="ToDoLista.Controls.ListTODOControl" %>
-<asp:HiddenField ID="hf_listToDo" runat="server" />
+<asp:HiddenField ID="hf_listToDo"  ClientIDMode="Static" runat="server" />
+<asp:HiddenField ID="hf_endDate" runat="server" />
 <p>ToDo List</p>
 
-
+ 
 
 <div id="dv_showButton">
 
-    <asp:LinkButton ID="btn_showNewTaskControls" AutoPostBack="false" class="showButton" runat="server">
+    <asp:LinkButton ID="btn_showNewTaskControls" ViewStateMode="Disabled" AutoPostBack="false" class="showButton" runat="server">
         <img src="~/Image/Icon/addTask_32_addTask_32.png" runat="server"/>
-        <asp:Label Text="Show new task controls" class="labelAddButton" runat="server"></asp:Label></>
+        <asp:Label Text="Show new task field" class="labelAddButton" runat="server"></asp:Label></>
     </asp:LinkButton>
 
 </div>
@@ -16,18 +17,18 @@
 
     <div class="contenerNewTask">
         <asp:Label runat="server" Text="New Task:"></asp:Label>
-        <asp:TextBox ID="tb_newTask" TextMode="SingleLine" AutoPostBack="false" class="textClass" runat="server"></asp:TextBox>
+        <asp:TextBox ID="tb_newTask" TextMode="SingleLine" ViewStateMode="Disabled" AutoPostBack="false" class="textClass" runat="server"></asp:TextBox>
     </div>
 
     <div class="contenerNewEndDate">
         <asp:Label runat="server" AutoPostBack="false" Text="End task date:"></asp:Label>
-        <asp:TextBox ID="tb_dateTask" class="textClass" runat="server" TextMode="Date" ToolTip="Enter date"></asp:TextBox>
+        <asp:TextBox ID="tb_dateTask" ViewStateMode="Disabled" OnTextChanged="tb_endDate_TextChanged" class="textClass" runat="server" TextMode="DateTimeLocal" ToolTip="Enter date"></asp:TextBox>
      
     </div>
 
-    <asp:LinkButton ID="bt_newTask" AutoPostBack="false" class="AddButton" runat="server">
+    <asp:LinkButton ID="bt_newTask" ViewStateMode="Disabled" AutoPostBack="false" class="AddButton" runat="server">
         <img src="../Image/Icon/add_32_addDocument_32.png" runat="server"/>
-        <asp:Label Text="New Task" class="labelAddButton" runat="server"></asp:Label></>
+        <asp:Label Text="Create  task" class="labelAddButton" runat="server"></asp:Label></>
     </asp:LinkButton>
 
 </div>
@@ -35,6 +36,7 @@
 <div style="display: none;">
     <asp:Button runat="server" AutoPostBack="false" ID="NewTask" OnClick="AddNewTask_Click" />
     <asp:Button runat="server" AutoPostBack="false" ID="SaveCheck" OnClick="SaveCheck_Click" />
+    <asp:Button runat="server" ID="CheckRow" AutoPostBack="false" OnClick="CheckRow_Click" />
     <asp:Button runat="server" ID="DeleteRow" AutoPostBack="false" OnClick="DeleteRow_Click" />
     <asp:Button runat="server" ID="ClearGridViewButton" AutoPostBack="false" OnClick="ClearGridView_Click" />
 </div>
@@ -86,10 +88,10 @@
             <asp:BoundField DataField="ID_ToDo" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" HeaderText="ID_ToDo"
                 InsertVisible="false" ReadOnly="True" />
 
-            <asp:CommandField ShowDeleteButton="true" ButtonType="Image" DeleteImageUrl="~/Image/Icon/ok_32_okDocument_32.png" DeleteText="Is Do" />
+            <asp:ButtonField CommandName="Accept"  ImageUrl="~/Image/Icon/ok_32_okDocument_32.png" ButtonType="Image"  />
 
 
-            <asp:CommandField UpdateText="Update" UpdateImageUrl="~/Image/Icon/update_32_updateDocument_32.png" CancelText="Cancel edit" CancelImageUrl="~/Image/Icon/cancel_32_cancelDocument_32.png" EditText="Edit" ShowEditButton="true" ButtonType="Image" EditImageUrl="~/Image/Icon/edit_32_editDocument_32.png" />
+            <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="~/Image/Icon/delete_32_deleteDocument_32.png" DeleteText="Is Do" UpdateText="Update" UpdateImageUrl="~/Image/Icon/update_32_updateDocument_32.png" CancelText="Cancel edit" CancelImageUrl="~/Image/Icon/cancel_32_cancelDocument_32.png" EditText="Edit" ShowEditButton="true" ButtonType="Image" EditImageUrl="~/Image/Icon/edit_32_editDocument_32.png" />
             <asp:BoundField DataField="Task" ItemStyle-Wrap="true" ReadOnly="false" HeaderText="Task">
                 <ItemStyle Width="50" />
                 <HeaderStyle Width="300px" />
@@ -100,12 +102,12 @@
 
             <asp:TemplateField HeaderText="End task date" SortExpression="EndDate">
                 <ItemTemplate>
-                    <asp:Label ID="l_endDate"  runat="server" ForeColor="White"
-                        Text='<%#  Bind("EndDate.Date")%>'></asp:Label>
+                    <asp:Label ID="l_endDate" CssClass="l_endDate"  runat="server" ForeColor="White"
+                        ></asp:Label>
 
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="tb_endDate" ForeColor="Black" TextMode="Date" Text='<%# Bind("EndDate.Date") %>' runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_endDate" ViewStateMode="Disabled" OnTextChanged="tb_endDate_TextChanged" ForeColor="Black" CssClass="tb_endDate" TextMode="DateTimeLocal"  runat="server"></asp:TextBox>
                 </EditItemTemplate>
 
             </asp:TemplateField>
