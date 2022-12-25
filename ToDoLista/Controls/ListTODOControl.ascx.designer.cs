@@ -78,6 +78,24 @@ namespace ToDoLista.Controls
         protected global::System.Web.UI.WebControls.Button SaveCheck;
 
         /// <summary>
+        /// Kontrolka DeleteRow.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteRow;
+
+        /// <summary>
+        /// Kontrolka ClearGridViewButton.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ClearGridViewButton;
+
+        /// <summary>
         /// Kontrolka cb_showEndTask.
         /// </summary>
         /// <remarks>
@@ -103,14 +121,5 @@ namespace ToDoLista.Controls
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_toDoList;
-
-        /// <summary>
-        /// Kontrolka DeleteRow.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteRow;
     }
 }

@@ -20,6 +20,48 @@ namespace ToDoLista.Models
 
 
 
+        public static bool HasUserThisTask(int? userID,TaskModel task)
+        {
+            bool hasTask = false;
+            string query = @"SELECT 
+								count(ID_Task)
+
+                                FROM tasks
+                                left join users on users.ID_User = User_ID
+                                WHERE User_ID = @UserID and Task = @Task and EndDate = @EndDate and users.Selected=0;";
+            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@UserID", MySqlDbType.Int32).Value = userID;
+                    cmd.Parameters.Add("@Task", MySqlDbType.String).Value = task.Task;
+                    cmd.Parameters.Add("@EndDate", MySqlDbType.DateTime).Value = task.EndDate;
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            try
+                            {
+                                hasTask = reader.GetInt32(0) >= 1 ? true : false;
+
+                            }
+                            catch (Exception ex)
+                            {
+
+                                throw ex;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            return hasTask;
+
+        }
 
         public static bool HasUserTasks(int? userID)
         {

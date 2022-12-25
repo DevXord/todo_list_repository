@@ -19,11 +19,11 @@
         <p>Select a user or enter a new name</p>
 
         <div id="contenerTBBT">
-            <ajaxToolkit:ComboBox ID="cmb_selectUser" AutoPostBack="false" DataValueField="ID_User" DataTextField="Name" OnDataBinding="cmb_selectUser_DataBinding" runat="server">
+            <ajaxToolkit:ComboBox ID="cmb_selectUser" EnableTheming="false"  EnableViewState="false"  AutoPostBack="False" DataValueField="ID_User" DataTextField="Name" OnDataBinding="cmb_selectUser_DataBinding" runat="server" ToolTip="Select user" AutoCompleteMode="Suggest">
             </ajaxToolkit:ComboBox>
 
-            <asp:TextBox ID="tb_newUser" CssClass="textClass" AutoPostBack="false" runat="server"></asp:TextBox>
-            <asp:LinkButton ID="bt_nextPage" CssClass="buttonClass" runat="server">
+            <asp:TextBox ID="tb_newUser" TextMode="SingleLine" CssClass="textClass" AutoPostBack="false" runat="server"></asp:TextBox>
+            <asp:LinkButton ID="bt_nextPage" ToolTip="Login" CssClass="buttonClass" runat="server" >
                 <img src="~/Image/Icon/login_32_loginDocument_32.png" runat="server"/>
                 <asp:Label Text="LogIN" class="labelAddButton" runat="server"></asp:Label></>
             </asp:LinkButton>

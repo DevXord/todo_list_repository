@@ -19,31 +19,76 @@ namespace ToDoLista.Controls
 {
     public partial class ListTODOControl : System.Web.UI.UserControl
     {
+        #region Useful methods
+        public void showEndTaskControls(bool position)
+        {
+            lb_showEndTask.Visible = position;
+            cb_showEndTask.Visible = position;
 
+        }
+        protected void DeleteRow_Click(object sender, EventArgs e)
+        {
+            if (hf_listToDo.Value != string.Empty)
+                TaskModel.DeleteTask(Convert.ToInt32(hf_listToDo.Value));
+            gv_toDoList.DataBind();
+        }
+
+        protected void AddNewTask_Click(object sender, EventArgs e)
+        {
+
+            TaskModel task = new TaskModel();
+
+            task.Task = tb_newTask.Text;
+            task.EnteredDate = DateTime.Now;
+            task.EndDate = Convert.ToDateTime(tb_dateTask.Text);
+            task.User_ID = Convert.ToInt32(Session["userID"]);
+
+
+            if (!TaskModel.HasUserThisTask(task.User_ID, task))
+            {
+                TaskModel.CreateNewTask(task);
+            }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('This task already exists!',false);", true);
+
+
+
+          
+            tb_dateTask.Text = null;
+            tb_newTask.Text = null;
+            gv_toDoList.DataBind();
+
+
+        }
+
+        protected void SaveCheck_Click(object sender, EventArgs e)
+        {
+            bool check = cb_showEndTask.Checked;
+            UserModel.SelectEndTaskUser(Convert.ToInt32(Session["userID"]), check);
+
+            gv_toDoList.DataBind();
+        }
+
+        public void ClearGridView_Click(object sender, EventArgs e)
+        {
+            gv_toDoList.DataBind();
+        }
+
+        #endregion Useful methods
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-
                 gv_toDoList.DataBind();
-            }
         }
 
 
         protected void gv_toDoList_DataBinding(object sender, EventArgs e)
         {
             if (TaskModel.HasUserTasks(Convert.ToInt32(Session["userID"])))
-            {
-                lb_showEndTask.Visible = true;
-                cb_showEndTask.Visible = true;
-              
-            }
+                showEndTaskControls(true);
             else
-            {
-                lb_showEndTask.Visible = false;
-                cb_showEndTask.Visible = false;
-            }
+                showEndTaskControls(false);
 
             gv_toDoList.DataSource = TaskModel.ShowUserTasks(Convert.ToInt32(Session["userID"]), UserModel.GetSelectedUser(Convert.ToInt32(Session["userID"]))); ;
             cb_showEndTask.DataBind();
@@ -51,28 +96,10 @@ namespace ToDoLista.Controls
 
         protected void gv_toDoList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
-            if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                hf_listToDo.Value = gv_toDoList.Rows[index].Cells[0].Text;
-
-
-            }
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                hf_listToDo.Value = gv_toDoList.Rows[index].Cells[0].Text;
-
-            }
+            hf_listToDo.Value = gv_toDoList.Rows[Convert.ToInt32(e.CommandArgument)].Cells[0].Text;
         }
 
-        protected void DeleteRow_Click(object sender, EventArgs e)
-        {
-            if (hf_listToDo.Value != string.Empty)
-                TaskModel.DeleteTask(Convert.ToInt32(hf_listToDo.Value));
-            gv_toDoList.DataBind();
-        }
+
 
         protected void gv_toDoList_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
@@ -95,14 +122,14 @@ namespace ToDoLista.Controls
             {
                 if (result == new DateTime(0001, 1, 1, 12, 0, 0))
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ToastError('Invalid Date!');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('Invalid Date!',true);", true);
                     is_valid = true;
                 }
 
 
                 if (result < DateTime.Now && task.EndDate != result)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ToastError('The date must be from the future!');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('The date must be from the future!',true);", true);
                     is_valid = true;
                 }
                 if (!is_valid)
@@ -112,8 +139,10 @@ namespace ToDoLista.Controls
             }
 
 
-
             TaskModel.UpdateTask(task);
+
+
+
             if (is_valid == false)
                 gv_toDoList.EditIndex = -1;
 
@@ -182,44 +211,29 @@ namespace ToDoLista.Controls
             gv_toDoList.DataBind();
         }
 
-        protected void AddNewTask_Click(object sender, EventArgs e)
-        {
 
-            TaskModel task = new TaskModel();
-
-            task.Task = tb_newTask.Text;
-            task.EnteredDate = DateTime.Now;
-            task.EndDate = Convert.ToDateTime(tb_dateTask.Text);
-            task.User_ID = Convert.ToInt32(Session["userID"]);
-            TaskModel.CreateNewTask(task);
-
-
-            tb_dateTask.Text = null;
-            tb_newTask.Text = null;
-            gv_toDoList.DataBind();
-
-        }
 
         protected void gv_toDoList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
             gv_toDoList.PageIndex = e.NewPageIndex;
             gv_toDoList.DataBind();
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "changeTextLabel();", true);
+
         }
 
-        protected void SaveCheck_Click(object sender, EventArgs e)
-        {
-            bool check = cb_showEndTask.Checked;
-            UserModel.SelectEndTaskUser(Convert.ToInt32(Session["userID"]), check);
 
-            gv_toDoList.DataBind();
-        }
 
         protected void cb_showEndTask_DataBinding(object sender, EventArgs e)
         {
             cb_showEndTask.Checked = UserModel.GetSelectedUser(Convert.ToInt32(Session["userID"]));
             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "changeTextLabel();", true);
         }
+
+        protected void gv_toDoList_DataBound(object sender, EventArgs e)
+        {
+            cb_showEndTask.DataBind();
+        }
+
+
     }
 }

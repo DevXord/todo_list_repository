@@ -19,31 +19,38 @@
                 }, toast, 'close', 'white-button');
             }],
             ['<button ><b>No</b></button>', function (instance, toast) {
+                var button = document.getElementById('MainContent_ListTODOControl_ClearGridViewButton');
+                button.click();
                 instance.hide({
                     transitionOut: 'fadeOutUp',
                 }, toast, 'close', 'white-button');
             }]
         ],
     });
+ 
     return false;
 }
 
 $('#MainContent_ListTODOControl_bt_newTask').click(function () {
     if ($('#MainContent_ListTODOControl_tb_newTask').val() == null || $('#MainContent_ListTODOControl_tb_newTask').val() == "") {
-        ToastError('The new task field is empty!');
+        ShowErrorMessage('The new task field is empty!');
+      
         return false;
     }
     if ($('#MainContent_ListTODOControl_tb_dateTask').val() == null || $('#MainContent_ListTODOControl_tb_dateTask').val() == "") {
-        ToastError('The end task date field is empty!');
+        ShowErrorMessage('The end task date field is empty!');
+      
         return false;
     }
 
     if (new Date($('#MainContent_ListTODOControl_tb_dateTask').val()).toString() == 'Invalid Date') {
-        ToastError('Invalid Date!');
+        ShowErrorMessage('Invalid Date!');
+         
         return false;
     }
     if (new Date($('#MainContent_ListTODOControl_tb_dateTask').val()) < new Date()) {
-        ToastError('The date must be from the future!');
+        ShowErrorMessage('The date must be from the future!');
+
         return false;
     }
    
@@ -69,7 +76,22 @@ $('#MainContent_ListTODOControl_btn_showNewTaskControls').click(function () {
 
 
 
- 
+function ShowErrorMessage(message, refresh=false) {
+    ToastError(message);
+    if (refresh) {
+        setTimeout(function () {
+
+
+            var button = document.getElementById('MainContent_ListTODOControl_ClearGridViewButton');
+            button.click();
+
+
+        }, 5000);
+
+    }
+    return false;
+}
+
 
 function changeTextLabel() {
     if ($('#MainContent_ListTODOControl_cb_showEndTask').prop('checked'))

@@ -4,44 +4,39 @@
 
 
 
-<div id="dv_showButton" >
+<div id="dv_showButton">
 
-
-<asp:LinkButton ID="btn_showNewTaskControls" AutoPostBack="false" class="showButton" runat="server">
+    <asp:LinkButton ID="btn_showNewTaskControls" AutoPostBack="false" class="showButton" runat="server">
         <img src="~/Image/Icon/addTask_32_addTask_32.png" runat="server"/>
         <asp:Label Text="Show new task controls" class="labelAddButton" runat="server"></asp:Label></>
-</asp:LinkButton>
+    </asp:LinkButton>
+
 </div>
 <div id="dv_NewTaskContener" class="contenerAddTask">
 
-
-
-
     <div class="contenerNewTask">
-
         <asp:Label runat="server" Text="New Task:"></asp:Label>
-        <asp:TextBox ID="tb_newTask" AutoPostBack="false" class="textClass" runat="server"></asp:TextBox>
-
+        <asp:TextBox ID="tb_newTask" TextMode="SingleLine" AutoPostBack="false" class="textClass" runat="server"></asp:TextBox>
     </div>
 
     <div class="contenerNewEndDate">
         <asp:Label runat="server" AutoPostBack="false" Text="End task date:"></asp:Label>
-        <asp:TextBox ID="tb_dateTask" class="textClass" runat="server"></asp:TextBox>
-        <ajaxToolkit:CalendarExtender runat="server" TargetControlID="tb_dateTask" />
+        <asp:TextBox ID="tb_dateTask" class="textClass" runat="server" TextMode="Date" ToolTip="Enter date"></asp:TextBox>
+     
     </div>
+
     <asp:LinkButton ID="bt_newTask" AutoPostBack="false" class="AddButton" runat="server">
         <img src="../Image/Icon/add_32_addDocument_32.png" runat="server"/>
         <asp:Label Text="New Task" class="labelAddButton" runat="server"></asp:Label></>
-
     </asp:LinkButton>
 
 </div>
-<div style="display: none;">
-    <asp:Button runat="server" AutoPostBack="false" ID="NewTask" OnClick="AddNewTask_Click" />
-</div>
 
 <div style="display: none;">
+    <asp:Button runat="server" AutoPostBack="false" ID="NewTask" OnClick="AddNewTask_Click" />
     <asp:Button runat="server" AutoPostBack="false" ID="SaveCheck" OnClick="SaveCheck_Click" />
+    <asp:Button runat="server" ID="DeleteRow" AutoPostBack="false" OnClick="DeleteRow_Click" />
+    <asp:Button runat="server" ID="ClearGridViewButton" AutoPostBack="false" OnClick="ClearGridView_Click" />
 </div>
 
 
@@ -56,6 +51,7 @@
 
     <asp:GridView ID="gv_toDoList"
         OnDataBinding="gv_toDoList_DataBinding"
+        OnDataBound="gv_toDoList_DataBound"
         AutoGenerateColumns="false"
         AllowPaging="True"
         CssClass="gv_toDoList"
@@ -104,21 +100,17 @@
 
             <asp:TemplateField HeaderText="End task date" SortExpression="EndDate">
                 <ItemTemplate>
-                    <asp:Label ID="l_endDate" runat="server" ForeColor="White"
+                    <asp:Label ID="l_endDate"  runat="server" ForeColor="White"
                         Text='<%#  Bind("EndDate.Date")%>'></asp:Label>
 
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="tb_endDate" ForeColor="Black" Text='<%# Bind("EndDate.Date") %>' runat="server"></asp:TextBox>
-                    <ajaxToolkit:CalendarExtender runat="server" Format="dd/MM/yyyy" ClearTime="true" ID="ce_endDate" TargetControlID="tb_endDate" PopupButtonID="tb_endDate" />
+                    <asp:TextBox ID="tb_endDate" ForeColor="Black" TextMode="Date" Text='<%# Bind("EndDate.Date") %>' runat="server"></asp:TextBox>
                 </EditItemTemplate>
 
             </asp:TemplateField>
 
         </Columns>
     </asp:GridView>
-</div>
-<div style="display: none;">
-    <asp:Button runat="server" ID="DeleteRow" OnClick="DeleteRow_Click" />
 </div>
 
