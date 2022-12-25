@@ -13,7 +13,7 @@ This application was written as an assignment for recruitment purposes.
 - XAMPP Control Panel v3.3.0,
 - Visual Studio 2022,
 - Notepad++.
-#Sources:
+# Sources:
 * https://stackoverflow.com/
 * https://www.geeksforgeeks.org/
 * https://izitoast.marcelodolza.com/
