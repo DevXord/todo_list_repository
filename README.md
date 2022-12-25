@@ -5,7 +5,7 @@ This application was written as an assignment for recruitment purposes.
 -  Jquery,
 -  MySQL,
 -  iziToast,
--  AjaxTollKit,
+-  AjaxControlToolkit,
 -  CSS.  
 # Programs used:
 - Inkscape - Create icon,
