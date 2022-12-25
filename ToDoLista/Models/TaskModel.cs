@@ -29,7 +29,7 @@ namespace ToDoLista.Models
                                 FROM tasks
                                 left join users on users.ID_User = User_ID
                                 WHERE User_ID = @UserID and Task = @Task and EndDate = @EndDate and users.Selected=0;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -71,7 +71,7 @@ namespace ToDoLista.Models
 
                                 FROM tasks
                                 WHERE User_ID = @UserID;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -115,7 +115,7 @@ namespace ToDoLista.Models
                                 ,IsToDo 
                                 FROM tasks
                                 WHERE User_ID = @UserID {0} order by IsToDo desc ,EndDate asc;", showEndTasks ? "AND IsToDo = 0 " : "");
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -168,7 +168,7 @@ namespace ToDoLista.Models
                                 ,IsToDo 
                                 FROM tasks
                                 WHERE ID_Task = @taskID;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -218,7 +218,7 @@ namespace ToDoLista.Models
                                 WHERE `ID_Task` = @ID_Task;";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -247,7 +247,7 @@ namespace ToDoLista.Models
                             WHERE ID_Task = @ID_Task;";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -278,7 +278,7 @@ namespace ToDoLista.Models
                             WHERE `ID_Task` = @ID_Task;";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -319,7 +319,7 @@ namespace ToDoLista.Models
                                     0);";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))

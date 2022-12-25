@@ -6,14 +6,21 @@ This application was written as an assignment for recruitment purposes.
 -  MySQL,
 -  iziToast,
 -  AjaxControlToolkit,
--  CSS.  
+-  CSS.
 # Programs used:
 - Inkscape - Create icon,
 - MySQL Workbench,
 - XAMPP Control Panel v3.3.0,
-- Visual Studio 2022.
+- Visual Studio 2022,
+- Notepad++.
+#Sources:
+* https://stackoverflow.com/
+* https://www.geeksforgeeks.org/
+* https://izitoast.marcelodolza.com/
+* https://social.msdn.microsoft.com/forums/en-US/
 
 # How to use this app:
+0. In the location "ToDoLista/Database/" there is a .sql file containing a script to create the database and tables. The database was only used on localhost, so if you want to enter a different database address, edit the "Datebase.cs" file in the same directory.
 1. Select a name using the combobox or enter a new username in textbox. If you enter a new username, the application will create a new user in the database.
 2. Click "Show new task field" and enter your task and set the date.
 3. Click "Create task".
@@ -28,6 +35,7 @@ This application was written as an assignment for recruitment purposes.
 12. If you previously set a deadline for a task that has passed without marking the task as completed, it will be marked in red.
 
 # Jak uzyc aplikacji:
+0. W lokalizacji "ToDoLista/Database/" znajduje siê plik .sql, ktory zawiera skrypt do stworzenia bazy danych i tabel. Baza danych byla uzywana tylko na localhost, wiec jesli chcesz wprowadzic inny adres bazy danych, edytuj plik "Datebase.cs" w tym samym katalogu.
 1. Wybierz nazwe za pomoca comboboxa lub wprowadz nowa nazwe uzytkownika w polu tekstowym. Jezeli wpiszesz nowa nazwe uzytkownika, aplikacja stworzy nowe konto w bazie danych.
 2. Kliknij „Show new task field” i wprowadz swoje zadanie wraz z data.
 3. Kliknij „Create task”.

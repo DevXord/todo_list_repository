@@ -24,7 +24,7 @@ namespace ToDoLista.Models
                                 WHERE `ID_User` = @userID;";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -55,7 +55,7 @@ namespace ToDoLista.Models
                                 Selected 
                                 FROM users
                                 WHERE ID_User = @UserID;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -101,7 +101,7 @@ namespace ToDoLista.Models
                                 ,Selected 
                                 FROM users
                                 WHERE ID_User = @UserID;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -144,7 +144,7 @@ namespace ToDoLista.Models
                                 ID_User 
                                 FROM users
                                 WHERE Name = @userName;";
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -189,7 +189,7 @@ namespace ToDoLista.Models
                                 ,LastLoginDate
                                 ,Selected 
                                 FROM users;");
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -240,7 +240,7 @@ namespace ToDoLista.Models
                             @LastLoginDate);";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -271,7 +271,7 @@ namespace ToDoLista.Models
                              WHERE ID_User = @UserId;";
 
 
-            using (MySqlConnection connection = new MySqlConnection("Database=todolist;Host=127.0.0.1;Port=3306;User Id=root;"))
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
             {
                 connection.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))

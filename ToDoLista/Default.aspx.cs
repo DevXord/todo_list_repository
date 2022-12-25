@@ -41,7 +41,7 @@ namespace ToDoLista
             foreach (var task in tasks)
             {
                 if (task.EndDate.Value >= DateTime.Now && task.EndDate.Value < DateTime.Now.AddDays(2)) {
-                    message += "Task <b>" + task.Task + "</b><br> End date " + task.EndDate.Value.ToShortDateString() +" at " + task.EndDate.Value.ToShortTimeString() + "<br>";
+                    message += "Task <b>" + task.Task + "</b><br> End date " + task.EndDate.Value.ToString("dd/MM/yyyy") +" at " + task.EndDate.Value.ToShortTimeString() + "<br>";
 
 
                 }
