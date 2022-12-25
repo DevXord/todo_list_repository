@@ -27,16 +27,16 @@ This application was written as an assignment for recruitment purposes.
 11. If you previously set the task completion date to a day later than today, the next time a selected user "logs in", he will receive a notification about the approaching task date.
 12. If you previously set a deadline for a task that has passed without marking the task as completed, it will be marked in red.
 
-# Jak u¿yæ aplikacji:
-1. Wybierz nazwê za pomoc¹ comboboxa lub wprowadŸ now¹ nazwê u¿ytkownika w polu tekstowym. Je¿eli wpiszesz now¹ nazwê u¿ytkownika, aplikacja stworzy nowe konto w bazie danych.
-2. Kliknij „Show new task field” i wprowadŸ swoje zadanie wraz z dat¹.
+# Jak uzyc aplikacji:
+1. Wybierz nazwe za pomoca comboboxa lub wprowadz nowa nazwe uzytkownika w polu tekstowym. Jezeli wpiszesz nowa nazwe uzytkownika, aplikacja stworzy nowe konto w bazie danych.
+2. Kliknij „Show new task field” i wprowadz swoje zadanie wraz z data.
 3. Kliknij „Create task”.
-4. Na Twojej liœcie pojawi³o siê nowe zadanie, kliknij pierwszy przycisk, a nastêpnie zaakceptuj. W³aœnie oznaczy³eœ zadanie jako ukoñczone.
-5. Drugi przycisk odpowiada za edycjê wiersza. Jeœli na niego klikniesz, zadanie przejdzie w tryb edycji. Kliknij go.
+4. Na Twojej liscie pojawilo sie nowe zadanie, kliknij pierwszy przycisk, a nastêpnie zaakceptuj. Wlasnie oznaczyleœ zadanie jako ukonczone.
+5. Drugi przycisk odpowiada za edycjê wiersza. Jesli na niego klikniesz, zadanie przejdzie w tryb edycji. Kliknij go.
 6. Edytuj zadanie zgodnie z potrzebami.
 7. Pierwszy przycisk odpowiada za akceptacjê zmian, a drugi za ich anulowanie.
-8. Ostatni przycisk wyœwietlony po wyjœciu z tryb edycji, s³u¿y do usuwania wybranego zadania.
-9. Jeœli zakoñczysz zadanie, zmieni kolor na zielony i zostanie umieszczone na górze listy, mo¿esz je ukryæ zaznaczaj¹c CheckBox "Hide completed tasks". Jeœli go wybierzesz, zmieni siê jego tekst na „View completed tasks”.
-10. W pasku nawigacyjnym znajduje siê odnoœnik „ToDo Lista app” odpowiedzialny za powrót do pierwszej strony.
-11. Je¿eli wczeœniej ustawi³eœ termin wykonania zadania na dzieñ póŸniej ni¿ dzisiaj, przy nastêpnym "logowaniu" wybrany u¿ytkownik otrzyma powiadomienie o zbli¿aj¹cej siê dacie zadania.
-12. Je¿eli wczeœniej ustawi³eœ termin wykonania zadania, który min¹³ bez oznaczenia zadania jako wykonane, zostanie one zaznaczone kolorem czerwonym.
+8. Ostatni przycisk wyswietlony po wyjsciu z trybu edycji, sluzy do usuwania wybranego zadania.
+9. Jesli zakonczysz zadanie, zmieni kolor na zielony i zostanie umieszczone na gorze listy, mo¿esz je ukryc zaznaczajac CheckBox "Hide completed tasks". Jesli go wybierzesz, zmieni siê jego tekst na „View completed tasks”.
+10. W pasku nawigacyjnym znajduje sie odnosnik „ToDo Lista app” odpowiedzialny za powrot do pierwszej strony.
+11. Jezeli wczesniej ustawiles termin wykonania zadania na dzien poŸniej niz dzisiaj, przy nastepnym "logowaniu" wybrany uzytkownik otrzyma powiadomienie o zblizajacej sie dacie zadania.
+12. Jezeli wczesniej ustawiles termin wykonania zadania, ktory minal bez oznaczenia zadania jako wykonane, zostanie zaznaczone kolorem czerwonym.
