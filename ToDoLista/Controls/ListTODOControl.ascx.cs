@@ -220,7 +220,7 @@ namespace ToDoLista.Controls
             gv_toDoList.DataBind();
             if (gv_toDoList.EditIndex != -1)
             {
-                gv_toDoList.Rows[e.NewEditIndex].CssClass = "gv_toDoList_row_edit";
+                gv_toDoList.Rows[e.NewEditIndex].CssClass = "gv_toDoList_row_editrow";
                 var bt_deleteRow = gv_toDoList.Rows[e.NewEditIndex].Cells[1].Controls[0] as ImageButton;
                 bt_deleteRow.CssClass = "hiddencol";
             }

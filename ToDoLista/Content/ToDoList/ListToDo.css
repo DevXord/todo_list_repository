@@ -18,22 +18,22 @@
     border-bottom: 2px solid black;
 }
 .gv_toDoList_row_editrow {
-    background-color: rgb(54, 54, 54);
+    background-color: rgb(177, 199, 49);
     box-shadow: 12px 12px 2px 1px #000;
     border: 0 solid rgb(54, 54, 54);
-    
     border-bottom: 5px solid black;
     border-radius: 5px;
     font-weight: bold;
-  
+    height:80px;
     color: black;
 }
 
 .gv_toDoList_header {
-    background-color: rgb(15, 15, 15);
+ 
     border: 1px solid rgb(15, 15, 15);
-    border-bottom: 5px solid white;
-    border-radius: 5px;
+    background-color: rgb(15, 15, 15) !important;
+    border-top: 0px solid rgb(140, 145, 30);
+    border-bottom: 0px solid rgb(140, 145, 30);
     font-weight: bold;
     height: 10px;
     color: #e6e6e6;
@@ -64,15 +64,7 @@
     border-radius: 5px;
     color: white;
 }
-
-.gv_toDoList_row_edit {
-    background-color: rgb(177, 199, 49) !important;
-  
-    border-top: 0px solid rgb(140, 145, 30);
-    border-bottom: 0px solid rgb(140, 145, 30);
-    border-radius: 5px;
-    color: black;
-}
+ 
  
 .gv_toDoList_row_After {
     background-color: rgb(137, 8, 8, 1.00) !important;
