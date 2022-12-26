@@ -13,11 +13,7 @@ This application was written as an assignment for recruitment purposes.
 - XAMPP Control Panel v3.3.0,
 - Visual Studio 2022,
 - Notepad++.
-# Sources:
-* https://stackoverflow.com/
-* https://www.geeksforgeeks.org/
-* https://izitoast.marcelodolza.com/
-* https://social.msdn.microsoft.com/forums/en-US/
+ 
 
 # How to use this app:
 0. In the location "ToDoLista/Database/" there is a .sql file containing a script to create the database and tables. The database was only used on localhost, so if you want to enter a different database address, edit the "Datebase.cs" file in the same directory.

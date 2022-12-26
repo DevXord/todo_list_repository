@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
 
@@ -18,6 +19,97 @@ namespace ToDoLista.Models
         public DateTime? EndDate { get; set; }
         public byte? IsToDo { get; set; }
 
+
+
+        // int firstCompleteTaskID = TaskModel.GetFirstIdCompleteTask(task.ID_ToDo);
+        //  int lastCompleteTaskID = TaskModel.GetLastIdCompleteTask(task.ID_ToDo);
+
+
+        public static int? GetFirstIdCompleteTask(int? userID)
+        {
+            int? lastID = -1;
+            string query = @"SELECT 
+								ID_Task
+                                FROM tasks
+                                left join users on users.ID_User = tasks.User_ID
+                                WHERE users.ID_User = @userID and IsToDo = 1
+                                order by IsToDo desc ,EndDate asc limit 1;";
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@userID", MySqlDbType.Int32).Value = userID;
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            try
+                            {
+                                lastID = reader.GetInt32(0);
+
+                            }
+                            catch (Exception ex)
+                            {
+
+                                throw ex;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            return lastID;
+
+        }
+
+
+
+        public static int? GetLastIdCompleteTask(int? userID)
+        {
+            int? lastID = -1;
+            string query = @"SELECT 
+								tasks.*
+                                FROM tasks
+                                left join users on users.ID_User = tasks.User_ID
+                                WHERE users.ID_User = 1 and IsToDo = 1
+                                order by IsToDo desc ,EndDate desc limit 1;";
+            using (MySqlConnection connection = new MySqlConnection(ToDoLista.Database.Datebase.GetDateBaseAddress()))
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@userID", MySqlDbType.Int32).Value = userID;
+             
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            try
+                            {
+                                lastID = reader.GetInt32(0);
+
+                            }
+                            catch (Exception ex)
+                            {
+
+                                throw ex;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            return lastID;
+
+        }
 
 
         public static bool HasUserThisTask(int? userID,TaskModel task)

@@ -85,13 +85,13 @@
         <Columns>
 
 
-            <asp:BoundField DataField="ID_ToDo" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" HeaderText="ID_ToDo"
+            <asp:BoundField DataField="ID_ToDo" ItemStyle-CssClass="hiddencol" ItemStyle-Width="10" HeaderStyle-CssClass="hiddencol" HeaderText="ID_ToDo"
                 InsertVisible="false" ReadOnly="True" />
 
-            <asp:ButtonField CommandName="Accept"  ImageUrl="~/Image/Icon/ok_32_okDocument_32.png" ButtonType="Image"  />
+            <asp:ButtonField CommandName="Accept" ItemStyle-Width="50"  ImageUrl="~/Image/Icon/ok_32_okDocument_32.png" ButtonType="Image"  />
 
 
-            <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="~/Image/Icon/delete_32_deleteDocument_32.png" DeleteText="Is Do" UpdateText="Update" UpdateImageUrl="~/Image/Icon/update_32_updateDocument_32.png" CancelText="Cancel edit" CancelImageUrl="~/Image/Icon/cancel_32_cancelDocument_32.png" EditText="Edit" ShowEditButton="true" ButtonType="Image" EditImageUrl="~/Image/Icon/edit_32_editDocument_32.png" />
+            <asp:CommandField ShowDeleteButton="true" ItemStyle-Width="75" DeleteImageUrl="~/Image/Icon/delete_32_deleteDocument_32.png" DeleteText="Is Do" UpdateText="Update" UpdateImageUrl="~/Image/Icon/update_32_updateDocument_32.png" CancelText="Cancel edit" CancelImageUrl="~/Image/Icon/cancel_32_cancelDocument_32.png" EditText="Edit" ShowEditButton="true" ButtonType="Image" EditImageUrl="~/Image/Icon/edit_32_editDocument_32.png" />
             <asp:BoundField DataField="Task" ItemStyle-Wrap="true" ReadOnly="false" HeaderText="Task">
                 <ItemStyle Width="50" />
                 <HeaderStyle Width="300px" />
@@ -100,7 +100,7 @@
 
             </asp:BoundField>
 
-            <asp:TemplateField HeaderText="End task date" SortExpression="EndDate">
+            <asp:TemplateField ItemStyle-Width="150" HeaderText="End task date" SortExpression="EndDate">
                 <ItemTemplate>
                     <asp:Label ID="l_endDate" CssClass="l_endDate"  runat="server" ForeColor="White"
                         ></asp:Label>

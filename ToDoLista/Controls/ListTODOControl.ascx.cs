@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.DynamicData;
@@ -26,6 +27,11 @@ namespace ToDoLista.Controls
             cb_showEndTask.Visible = position;
 
         }
+        public void ShowClientErrorMessage(string message) {
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('"+ message + "');", true);
+            
+
+        }
         protected void CheckRow_Click(object sender, EventArgs e)
         {
             if (hf_listToDo.Value != string.Empty)
@@ -41,30 +47,53 @@ namespace ToDoLista.Controls
 
         protected void AddNewTask_Click(object sender, EventArgs e)
         {
-
-            if (tb_newTask.Text == "" || hf_endDate.Value == "")
+            bool isValid = false;
+            if (tb_newTask.Text == "")
             {
-                gv_toDoList.DataBind();
-                return;
+                ShowClientErrorMessage("The new task field is empty!");
+                isValid = true;
             }
-            TaskModel task = new TaskModel();
-
-            task.Task = tb_newTask.Text;
-            task.EnteredDate = DateTime.Now;
-            task.EndDate = Convert.ToDateTime(hf_endDate.Value);
-            task.User_ID = Convert.ToInt32(Session["userID"]);
-
-
-            if (!TaskModel.HasUserThisTask(task.User_ID, task))
+            if (!isValid && hf_endDate.Value == "")
             {
-                TaskModel.CreateNewTask(task);
+                ShowClientErrorMessage("The end task date field is empty!");
+                isValid = true;
             }
-            else
-                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('This task already exists!',false);", true);
+            if (!isValid && Convert.ToDateTime(hf_endDate.Value) < DateTime.Now  ) { 
+                ShowClientErrorMessage("The date must be from the future!");
+                isValid = true;
+            }
+            if (!isValid)
+            {
+                try
+                {
+                    Convert.ToDateTime(hf_endDate.Value);
+                }
+                catch (Exception)
+                {
+                    ShowClientErrorMessage("Invalid date!");
+                    isValid = true;
+                }
+            }
+            if (!isValid)
+            {
+                TaskModel task = new TaskModel();
+
+                task.Task = tb_newTask.Text;
+                task.EnteredDate = DateTime.Now;
+                task.EndDate = Convert.ToDateTime(hf_endDate.Value);
+                task.User_ID = Convert.ToInt32(Session["userID"]);
+
+
+                if (!TaskModel.HasUserThisTask(task.User_ID, task))
+                {
+                    TaskModel.CreateNewTask(task);
+                }
+                else
+                    ShowClientErrorMessage("This task already exists!");
 
 
 
-          
+            }
             tb_dateTask.Text = null;
             tb_newTask.Text = null;
             gv_toDoList.DataBind();
@@ -144,14 +173,16 @@ namespace ToDoLista.Controls
             {
                 if (result == new DateTime(0001, 1, 1, 12, 0, 0))
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('Invalid Date!',true);", true);
+                    ShowClientErrorMessage("Invalid date!");
+                     
                     is_valid = true;
                 }
 
 
                 if (result < DateTime.Now && task.EndDate != result)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "ShowErrorMessage('The date must be from the future!',true);", true);
+                     ShowClientErrorMessage("The date must be from the futur!");
+
                     is_valid = true;
                 }
                 if (!is_valid)
@@ -187,6 +218,12 @@ namespace ToDoLista.Controls
                 gv_toDoList.DataSource = ViewState["dt"] as DataTable;
             }
             gv_toDoList.DataBind();
+            if (gv_toDoList.EditIndex != -1)
+            {
+                gv_toDoList.Rows[e.NewEditIndex].CssClass = "gv_toDoList_row_edit";
+                var bt_deleteRow = gv_toDoList.Rows[e.NewEditIndex].Cells[1].Controls[0] as ImageButton;
+                bt_deleteRow.CssClass = "hiddencol";
+            }
 
         }
 
@@ -204,8 +241,11 @@ namespace ToDoLista.Controls
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TaskModel task = e.Row.DataItem as TaskModel;
+          
                 if (task != null)
                 {
+                    int? firstCompleteTaskID = TaskModel.GetFirstIdCompleteTask(task.User_ID);
+                    int? lastCompleteTaskID = TaskModel.GetLastIdCompleteTask(task.User_ID);
                     Label l_endDate = e.Row.FindControl("l_endDate") as Label;
                     if (task.IsToDo == 1)
                     {
@@ -221,9 +261,13 @@ namespace ToDoLista.Controls
 
                            
                             l_endDate.ForeColor = Color.White;
-                            e.Row.CssClass = "gv_toDoList_row_isDo";
+                            if(firstCompleteTaskID != null && task.ID_ToDo == firstCompleteTaskID)
+                                e.Row.CssClass = "gv_toDoList_row_isDoFirst";
+                            else if (lastCompleteTaskID != null && task.ID_ToDo == lastCompleteTaskID)
+                                e.Row.CssClass = "gv_toDoList_row_isDoLast";
+                            else e.Row.CssClass = "gv_toDoList_row_isDo";
                         }
-                       
+                        
                     }
                     if (task.EndDate < DateTime.Now && task.IsToDo == 0)
                     {
@@ -232,9 +276,9 @@ namespace ToDoLista.Controls
                         {
 
                             var bt_deleteRow = e.Row.Cells[1].Controls[0] as ImageButton;
-                            var bt_editRow = e.Row.Cells[2].Controls[0] as ImageButton;
+                           
 
-                            bt_editRow.CssClass = "hiddencol";
+                          
 
                             bt_deleteRow.CssClass = "hiddencol";
 
@@ -245,7 +289,7 @@ namespace ToDoLista.Controls
 
                     }
                     if (l_endDate != null)
-                        l_endDate.Text = task.EndDate.Value.ToString("g");
+                        l_endDate.Text = task.EndDate.Value.ToString("dd/MM/yyyy") + " at " + task.EndDate.Value.ToString("HH:mm");
                 }
 
             }
@@ -253,7 +297,6 @@ namespace ToDoLista.Controls
 
         protected void gv_toDoList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "showAskToast();", true);
             gv_toDoList.DataBind();
         }
 
