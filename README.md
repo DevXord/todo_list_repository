@@ -2,6 +2,7 @@
 This application was written as an assignment for recruitment purposes.
 # Technology used:
 -  ASP .NET,
+- .NET Framework 4.8,
 -  Jquery,
 -  MySQL,
 -  iziToast,
