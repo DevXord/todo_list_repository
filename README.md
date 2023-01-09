@@ -8,7 +8,7 @@ This application was written as an assignment for recruitment purposes.
 -  AjaxControlToolkit,
 -  CSS.
 # Programs used:
-- Inkscape - Create icon,
+- Inkscape,
 - MySQL Workbench,
 - XAMPP Control Panel v3.3.0,
 - Visual Studio 2022,
