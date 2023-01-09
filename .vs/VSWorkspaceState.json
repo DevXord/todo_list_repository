@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ToDoLista"
+    "\\ToDoLista",
+    "\\ToDoLista\\Controls"
   ],
-  "SelectedNode": "\\ToDoLista\\Default.aspx",
+  "SelectedNode": "\\ToDoLista\\Controls\\ListTODOControl.ascx",
   "PreviewInSolutionExplorer": false
 }
